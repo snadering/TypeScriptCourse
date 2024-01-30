@@ -3,6 +3,12 @@ export class Person {
     private readonly age: number;
     private readonly gender: string;
 
+    constructor(name: string, age: number, gender: string){
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
     getName(): string  {
         return this.name;
     }
@@ -16,6 +22,6 @@ export class Person {
 }
 
 export enum Gender {
-    Male,
-    Female
+    MALE = "Male",
+    FEMALE = "Female"
 }
