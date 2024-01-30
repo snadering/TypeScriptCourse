@@ -12,10 +12,10 @@ const people = [
     new Person("Jonathan", 13, Gender.MALE),
 ]
 
-const table = document.getElementById("table")! // missing html element
-const header = document.getElementById("header")!
-const button = document.getElementById("button")!
-const btn = document.createElement("button")!
+const table: HTMLElement = document.getElementById("table")! // missing html element
+const header: HTMLHeadElement = document.getElementById("header")!
+const button: HTMLElement = document.getElementById("button")!
+const btn: HTMLButtonElement = document.createElement("button")!
 btn.innerHTML = "Sort";
 button.appendChild(btn);
 
