@@ -116,8 +116,89 @@ function mergeObjects<T extends object, U extends object>(obj1: T, obj2: U): T &
 
 //9.
 
-let numbersArray: string[][] = [
+let numbersArray: Array<number> = [1,2,3,4,5]
+
+let numbersArray2: string[][] = [
     ["-", "-", "-"],
     ["-", "-", "-"],
     ["-", "-", "-"]
 ]
+
+//10.
+
+ // Part 1
+ // A variable that might be null or undefined
+ let nullableValue: string | null | undefined = "Hello";
+
+ // Use the exclamation mark to assert that the value is non-null
+ let nonNullableValue: string = nullableValue!;
+
+ console.log(nonNullableValue); // Output: Hello
+
+// Part 2
+// A variable that might be null or undefined
+function possibleUndefinedStringFunction(){return ""}
+let myString: string | undefined = possibleUndefinedStringFunction();
+// Use the exclamation mark to assert that the value is non-null
+let lemgth: number = myString!.length;
+
+
+//11.
+
+// Part 1
+// A function that takes an optional parameter
+function printName(name?: string) {
+    console.log(name);
+  }
+  
+  // Call the function without a parameter
+  printName(); // Output: undefined
+  // Call the function with a parameter
+  printName("John"); // Output: John
+  
+  // Part 2
+  // A type alias with an optional age property
+  type Person2 = {
+    name: string;
+    age?: number;
+  };
+  
+  // Create a person object with an age property
+  const personWithAge: Person2 = {
+    name: "Sander",
+    age: 21
+  }
+  // Create a person object without an age property
+  const personWithoutAge: Person2 = {
+    name: "Sander"
+  }
+
+//12.
+
+  function getNumberOrString(input: string | number): string | number{
+    return typeof input === 'number' ? input * 2 : input;
+  }
+
+//13.
+
+const imTypeAny: any = 500;
+
+const imTypeString: string = imTypeAny as string;
+const imTypeString2: string = <string>imTypeAny;
+
+const myDiv: HTMLElement | null = document.getElementById('myDiv');
+
+//14.
+
+function directionFunction(direction: "left" | "right" | "up" | "down"): 1 | 2 | 3 | 4{
+    switch(direction){
+        case "left":
+            return 1;
+        case "right":
+            return 2; 
+        case "up":
+            return 3;
+        case "down":
+            return 4;     
+    }
+}
