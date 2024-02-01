@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosPromise, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 interface User {
     name: string;
@@ -6,15 +6,15 @@ interface User {
     email: string;
 }
 
-const getById = async <T>(userId: number): Promise<T> => {
-   return await axios.get("https://jsonplaceholder.typicode.com/users/1")
+export const getById = async <T>(userId: number): Promise<T> => {
+   return await axios.get(`https://jsonplaceholder.typicode.com/users/${userId}`)
         .then((response: AxiosResponse<T>) => {
             return response.data;
         }).catch((error: AxiosError) => {
             throw error;
         });
 }
-const getAll = async <T>(): Promise<T[]> => {
+export const getAll = async <T>(): Promise<T[]> => {
    return await axios.get("https://jsonplaceholder.typicode.com/users")
     .then((response: AxiosResponse<T[]>) => {
         return response.data;
@@ -23,13 +23,14 @@ const getAll = async <T>(): Promise<T[]> => {
     });
 }
 
-const logUserInfo = (user: User) => {
+export const logUserInfo = (user: User) => {
     console.log(
         `Name: ${user.name}
         Username: ${user.username}
         Email: ${user.email}`
     );
 }
+
 
 
 /* 
