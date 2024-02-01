@@ -30,3 +30,17 @@ const logUserInfo = (user: User) => {
         Email: ${user.email}`
     );
 }
+
+
+/* 
+Question 1:
+    - You find the type delcaration file for Axios in the node_modules folder
+Question 2:
+    - index.d.ts
+Question 3:
+    - npm i @types/<name>
+Question 4:
+    - Type declaration file" in TypeScript (.d.ts) declares types for existing JavaScript code. 
+      Type definition file" often refers to TypeScript declarations for external JavaScript libraries.
+*/
+    
