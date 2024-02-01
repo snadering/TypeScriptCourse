@@ -202,3 +202,89 @@ function directionFunction(direction: "left" | "right" | "up" | "down"): 1 | 2 |
             return 4;     
     }
 }
+
+//15.
+
+type Human = {eat: () => "I'm eating"}
+type Alien = {fly: () => "I'm flying"}
+
+function getHumanOrAlien(creator: Human | Alien): () => string {
+    if("eat" in creator){
+        return creator.eat;
+    } else {
+        return creator.fly;
+    }
+}
+
+//16.
+
+type Person3 = {
+    name: string;
+    age: number;
+  };
+
+type Car = {
+    model: string;
+    year: number;
+  };
+
+function isPersonOrCar(input: Person3 | Car): string{
+    return 'name' in input ? input.name : input.model;
+}
+  
+//17.
+
+interface Bird {
+    fly(): void;
+    layEggs(): void;
+  }
+  
+  interface Fish {
+    swim(): void;
+    layEggs(): void;
+  }
+  
+  // write a type predicate to narrow the type of the fish parameter
+  function isFish(pet: Bird | Fish): pet is Fish{
+    return (pet as Fish).swim !== undefined;
+  }
+  
+  function howToMove(pet: Fish | Bird) {
+    if (isFish(pet)) {
+      pet.swim();
+    } else {
+      pet.fly();
+    }
+  }
+
+
+//18.
+
+interface Person4 {
+    name: string;
+    [key: string]: any;
+}
+
+const myObject: Person4 = {
+    name: "Sander",
+    age: 21,
+}
+
+//19.
+
+interface Person5 {
+    name: string;
+  }
+  
+  interface Student {
+    studentId: number;
+  }
+
+// Intersection type combining Person and Student
+type PersonAndStudent = Person5 & Student;
+
+// Function taking a person and a student, and returning combined properties
+function combinePersonAndStudent(person: Person5, student: Student): PersonAndStudent {
+  // Use the spread operator to combine properties from both interfaces
+  return { ...person, ...student };
+}
