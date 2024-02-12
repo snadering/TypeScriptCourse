@@ -1,4 +1,5 @@
-# Express - Sander Roust
+# Week 2 - Express
+## Sander Roust
 
 ### I changed the run config for nodemon to:
 
