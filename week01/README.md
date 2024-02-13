@@ -1,2 +1,2 @@
-# Sander Roust
-# Week 1 Assignments for TypeScript Course
+# Week 1 - Assignments for TypeScript Course
+## Sander Roust
