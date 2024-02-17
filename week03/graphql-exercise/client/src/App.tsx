@@ -87,7 +87,11 @@ function App() {
         {data.people.map((person: Person) => (
           <div key={person.id}>
             <h2>{person.name}</h2>
+            <p><strong>Zip:</strong> {person.address.zipCode}</p>
+            <p><strong>Street:</strong> {person.address.street}</p>
+            <p><strong>House number:</strong> {person.address.houseNumber}</p>
             <img width="100px" src={`/public/person${person.id}.png`} alt={`Person ${person.id} portrait`} />
+            <hr />
           </div>
         ))}
       </div>
@@ -117,6 +121,17 @@ function App() {
           value={person.age}
           onChange={(e) => setPerson({ ...person, age: parseInt(e.target.value) })}
           placeholder="age"
+        />
+        <br />
+
+        <label htmlFor="imageUrl">imageUrl</label>
+        <br />
+        <input
+          id="imageUrl"
+          type="text"
+          value={person.imageUrl}
+          onChange={(e) => setPerson({ ...person, imageUrl: e.target.value })}
+          placeholder="imageUrl"
         />
         <br />
 
