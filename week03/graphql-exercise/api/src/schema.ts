@@ -12,7 +12,7 @@ const typeDefs = `#graphql
   }
 
   type Mutation {
-    createPerson(name: String!, age: Int!, addressInput: AddressInput): Person
+    createPerson(name: String!, age: Int!, imageUrl: String, addressInput: AddressInput!): Person
   }
 
   type Address {
@@ -26,6 +26,7 @@ const typeDefs = `#graphql
     id: ID!
     name: String!
     age: Int!
+    imageUrl: String
     address: Address!
   }
 
@@ -44,12 +45,13 @@ const resolvers = {
     Mutation: {
         createPerson: (
             _parent: never,
-            { name, age, addressInput }: { name: string; age: number; addressInput: AddressInput }
+            { name, age, imageUrl, addressInput }: { name: string; age: number; imageUrl: string; addressInput: AddressInput }
         ) => {
             const newPerson: Person = {
                 id: String(people.length + 1),
                 name,
                 age,
+                imageUrl,
                 address: {
                     id: String(Addresses.length + 1),
                     ...addressInput,
@@ -94,18 +96,21 @@ const people = [
         id: '1',
         name: 'Sander',
         age: 21,
+        imageUrl: 'person1.png',
         address: Addresses[0]
     },
     {
         id: '2',
         name: 'Jack',
         age: 15,
+        imageUrl: 'person2.png',
         address: Addresses[1]
     },
     {
         id: '3',
         name: 'Julius',
         age: 12,
+        imageUrl: 'person3.png',
         address: Addresses[2]
     },
     
@@ -122,6 +127,7 @@ type Person = {
     id: string;
     name: string;
     age: number;
+    imageUrl: string;
     address: Address;
 }
 
