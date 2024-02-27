@@ -27,6 +27,7 @@ const schema = new mongoose.Schema<ISeller>({
     shirts: [{type: Schema.Types.ObjectId, ref: "Shirt"}],
     createdAt: {
         type: Date,
+        immutable: true,
     }
 });
 

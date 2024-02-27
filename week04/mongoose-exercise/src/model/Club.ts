@@ -35,6 +35,7 @@ const schema = new mongoose.Schema<IClub>({
     ],
     createdAt: {
         type: Date,
+        immutable: true,
     },
 }, {
     virtuals: {

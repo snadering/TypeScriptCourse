@@ -28,6 +28,7 @@ const schema = new mongoose.Schema<IShirt>({
     },
     createdAt: {
         type: Date,
+        immutable: true,
     },
 });
 
