@@ -31,14 +31,4 @@ const taskManager = (() => {
     };
 })();
 
-
-/*
-taskManager.addTask(sampleTask);
-console.log(taskManager.getTasks()); 
-taskManager.updateTaskCompletion(sampleTask, true);
-console.log(taskManager.getTasks());
-taskManager.removeTask(sampleTask);
-console.log(taskManager.getTasks()); 
-*/
-
 export default taskManager;

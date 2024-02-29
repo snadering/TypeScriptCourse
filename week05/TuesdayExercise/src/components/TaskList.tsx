@@ -11,7 +11,12 @@ interface ComponentProps {
 }
 
 const TaskList: React.FC<ComponentProps> = ({ taskManager }) => {
-   const [tasks, setTasks] = useState<Task[]>([]);
+    const [tasks, setTasks] = useState<Task[]>([]);
+
+    useEffect(() => {
+        setTasks(taskManager.getTasks())
+
+    }, [tasks]);
 
     return (
         <div>
