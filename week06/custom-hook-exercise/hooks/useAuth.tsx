@@ -1,61 +1,70 @@
-import { useState } from 'react'
+import { createContext, useContext, useState, ReactNode } from 'react'
 
 
 interface User {
-    username: string,
-    password: string
+    username: string;
+    password: string;
 }
 
-
-
-export const login = (user: User) => {
-    window.localStorage.setItem('username', user.username)
-    window.localStorage.setItem('password', user.password)
-    console.log('Successfully logged in! \nCredentials saved in LocalStorage')
+interface AuthContextProps {
+    user: User | null;
+    login: (user: User) => void;
+    logout: () => void;
 }
 
-export const logout = () => {
-    window.localStorage.removeItem('username')
-    window.localStorage.removeItem('password')
-    console.log('Successfully logged out! \nCredentials removed from LocalStorage')
+interface AuthProviderProps {
+    children: ReactNode;
 }
 
-export const getUser = (): User => {
-    const username = window.localStorage.getItem('username');
-    const password = window.localStorage.getItem('password');
-    if(username && password){
-        const user: User = {
-            username: username,
-            password: password
-        }
-        return user;
-    }
-    return {
-        username: '',
-        password: ''
-    }
-}
+const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+    const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(getUser());
 
-export default function useAuth() {
-
-    const [authenticatedUser, setAuthenticatedUser] = useState<User | null>(getUser);
-
-    const loginHandler = (user: User) => {
-        login(user);
+    
+    const login = (user: User) => {
+        window.localStorage.setItem('username', user.username)
+        window.localStorage.setItem('password', user.password)
         setAuthenticatedUser(user)
+        console.log('Successfully logged in! \nCredentials saved in LocalStorage')
     }
-
-    const logoutHandler = () => {
-        logout();
+    
+    const logout = () => {
+        window.localStorage.removeItem('username')
+        window.localStorage.removeItem('password')
         setAuthenticatedUser(null)
+        console.log('Successfully logged out! \nCredentials removed from LocalStorage')
     }
 
-    return {
-        login: loginHandler,
-        logout: logoutHandler,
-        user: getUser
-    }
-
+    return (
+        <AuthContext.Provider value={{ user: authenticatedUser, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    )
+    
 }
+
+export default function useAuth(): AuthContextProps {
+    const context = useContext(AuthContext);
+    if(!context) console.log('missing auth provider')
+    return context as AuthContextProps;
+}
+
+    const getUser = (): User => {
+        const username = window.localStorage.getItem('username');
+        const password = window.localStorage.getItem('password');
+        if(username && password){
+            const user: User = {
+                username: username,
+                password: password
+            }
+            return user;
+        }
+        return {
+            username: '',
+            password: ''
+        }
+    }
+    
+    
  
